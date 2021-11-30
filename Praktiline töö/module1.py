@@ -7,7 +7,7 @@ def lisamine(i,p):
         nimi = input("Nimi: ")
         i.append(nimi)
         palgad = int(input("Palk: "))
-        p.append(palk)
+        p.append(palgad)
         return i,p
 def otsing_nimi_jargi(inimesed:list,palgad:list):
     """Tagastame jäejend või tekst
@@ -26,5 +26,29 @@ def otsing_nimi_jargi(inimesed:list,palgad:list):
         else:
              t="Ei ole nimekirjas"
     return t
+def suurim_palk(i,p):
+    suurim=max(p)
+    b=p.index(suurim)
+    kellel=i[b]
+    return suurim,kellel
+def keskmine(i,p):
+    """Keskmise palka leidmine.Kui ta on loetelus,siis näime kes saad seda kätte
+    :rtype var:
+    """
+    summa=0
+    for palk in p:
+        summa+=palk
+    kesk=summa/len(p)
+    print(kesk)
+    vahe=0
+    if 0<=p.index(kesk)<len(p)-1:
+        kesk=i[p.index(kesk)]
+        return kesk
+    else:
+        kesk="Puudub"
+        return kesk
+
+
+
 
 
