@@ -47,6 +47,17 @@ def keskmine(i,p):
     else:
         kesk="Puudub"
         return kesk
+def remove(inimesed:list,palgad:list):
+    """
+    """
+    a=input("Keda otsime?")
+    if a not in inimesed:
+        print("Selle nime ei ole olemas")
+    else:
+        b=inimesed.index(a)
+        inimesed.remove(a)
+        palgad.pop(b)
+
 
 
 
