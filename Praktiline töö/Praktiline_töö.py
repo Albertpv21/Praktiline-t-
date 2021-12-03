@@ -1,26 +1,28 @@
 from module1 import *
-palgad=[1200,2500,750,395,1535,1600,3100]
+palk=[1200,2500,750,395,1535,1600,3100]
 inimesed=["A","B","C","D","E","J","F"]
 
 while True:
-    print("Lisamine-1,3=suurim palk,Keskmine-6,Otsi inimest-7,Remove-2")
-    valik = input("Millist valite->")
-    if valik == "1":
-        vastus= lisamine(inimesed,palgad)
-        print(vastus)
-    elif valik =="7":
-        vastus=otsing_nimi_jargi(inimesed,palgad)
-        print(vastus)
-    elif valik =="3":
-        vastus=suurim_palk(inimesed,palgad)
-        print(vastus)
-    elif valik =="6":
-        vastus=keskmine(inimesed,palgad)
-        print(vastus)
-    elif valik =="2":
-        vastus=remove(inimesed,palgad)
-        print(vastus)
-        
+  print("0-lõpetamine, 1-lisane andmed, 2-sorteerimine,3-Otsi nimest,4-TOP,5-Maksimaalne palk")
+  a = int(input())
+  if a == 0:
+      break
+  elif a == 1:
+      inimesed, palk = lisamine(palk,inimesed)
+      print(palk,inimesed)
+  elif a == 2:
+      p,i=sorteerimine(palk,inimesed)
+      for i in range(len(inimesed)):
+          print(inimesed[i]," Tema palk   ", palk[i])
+  elif a == 3:
+        ots_nimi,ots_palk=nimi(palk,inimesed)
+        for i in range(len(ots_nimi)):
+            print(ots_nimi[i]," Tema palk   ", ots_palk[i])
+  elif a == 4:
+      p, i=topbogat(palk, inimesed)
+  elif a == 5:
+        max_palk,kellel=maksimum(palk,inimesed)
+        print("Maksimaalne palk ", max_palk, " saab  ",kellel)
 
     
                 

@@ -1,63 +1,64 @@
-def lisamine(i,p): 
-    """
-    i-inimeste nimikiri,p-palka nimikiri 
-    """
-    kogus = int(input("Lisa inimest: "))
-    for j in range(kogus):
-        nimi = input("Nimi: ")
-        i.append(nimi)
-        palgad = int(input("Palk: "))
-        p.append(palgad)
-        return i,p
-def otsing_nimi_jargi(inimesed:list,palgad:list):
-    """Tagastame jäejend või tekst
-    :rtype var: tulemus
-    """
-    nimi=input("Keda otsime?")
-    for inimene in inimesed:
-        if inimene==nimi:
-            n=inimesed.count(nimi)
-            print("Inimene on olemas,selline kohtume",n,"korda")
-            b=-1
-            for i in range(n):
-                k=inimesed.index(nimi,b)
-                palk=palgad[k]
-                print(nimi,palk)
-        else:
-             t="Ei ole nimekirjas"
-    return t
-def suurim_palk(i,p):
-    suurim=max(p)
-    b=p.index(suurim)
-    kellel=i[b]
-    return suurim,kellel
-def keskmine(i,p):
-    """Keskmise palka leidmine.Kui ta on loetelus,siis näime kes saad seda kätte
-    :rtype var:
-    """
-    summa=0
-    for palk in p:
-        summa+=palk
-    kesk=summa/len(p)
-    print(kesk)
-    vahe=0
-    if 0<=p.index(kesk)<len(p)-1:
-        kesk=i[p.index(kesk)]
-        return kesk
-    else:
-        kesk="Puudub"
-        return kesk
-def remove(inimesed:list,palgad:list):
-    """
-    """
-    a=input("Keda otsime?")
-    if a not in inimesed:
-        print("Selle nime ei ole olemas")
-    else:
-        b=inimesed.index(a)
-        inimesed.remove(a)
-        palgad.pop(b)
+def lisamine(palk,inimesed):
+    add=input("Keda lisame?")
+    inimesed.append(add)
+    add_zp=int(input("Milline palk?"))
+    palk.append(add_zp)
+    return palk,inimesed     
+def sorteerimine(palk,inimesed): 
+    abi_p=0
+    abi_i=""
+    n=len(inimesed)
+    for i in range(0,n-1):
+        for j in range(i+1,n):
+            if palk[i]>palk[j]:
+                abi_p=palk[i]
+                palk[i]=palk[j]
+                palk[j]=abi_p
+                abi_i=inimesed[i]
+                inimesed[i]=inimesed[j]
+                inimesed[j]=abi_i
+    return palk,inimesed
+def nimi(palk,inimesed):
+    ots_nimi=[]
+    ots_palk=[]
+    palk_keda=0
+    keda=input("Sisesta nimi... ")
+    n=len(inimesed)
+    for j in range(n):
+        if inimesed[j]==keda:
+            palk_keda=palk[j]
+            ots_nimi.append(inimesed[j])
+            ots_palk.append(palk_keda)
+        else:pass
+    return ots_nimi,ots_palk
+def topbogat(palk,inimesed):
+    top,inimes=sorteerimine(palk,inimesed)
+    k= int(input("Vali mitu inimest tahad näha toppis: " ))
+    palk.reverse()
+    inimesed.reverse()
+    for i in range(0,k,1):
+        print(palk[i])
+        print(inimesed[i])
+    return palk, inimesed
 
+def maksimum(palk,inimesed):
+    m_palgad=[]
+    nimed=[]
+    max_palk=palk[0]
+    kellel=inimesed[0]
+    for p in palk:
+        if p>max_palk:
+            max_palk=p
+            i=palk.index(max_palk)
+            kellel=inimesed[i]
+    n=palk.count(max_palk)
+    palk_copy=palk.copy()
+    inimesed_copy=inimesed.copy()
+    for i in range(n):
+        j=palk_copy.index(max_palk)
+        m_palgad.append(palk_copy.pop(j))
+        nimed.append(inimesed_copy.pop(j))
+    return m_palgad, nimed
 
 
 
